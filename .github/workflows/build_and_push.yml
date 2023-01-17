@@ -1,0 +1,16 @@
+name: Build and push
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: make install_deps
+
+      - name: Build and Publish it
+        run: make publish
