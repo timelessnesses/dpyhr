@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dpyhr"
-version = "0.0.1a0"
+version = "0.1.0"
 description = "dpyhr. A discord.py module reloader written in pure python!"
 authors = ["timelessnesses <mooping3roblox@gmail.com>"]
 license = "MIT"
