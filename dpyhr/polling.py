@@ -13,11 +13,11 @@ class Polling(FileSystemEventHandler):
         self.condition = condition
     def on_modified(self, event: FileSystemEvent) -> typing.NoReturn:
         log.info(f"File changed: {event.src_path}")
-        if runner(self.condition(event)):
+        if runner(self.condition, event):
             log.info("Reloading...")
             path = event.src_path.replace("\\", "/").replace("/", ".")[:-3] # Convert to module path :D
             try:
-                runner(self.reload(path))
+                runner(self.reload, path)
                 log.info(f"Reloaded {path}")
             except Exception as e:
                 log.error(f"Failed to reload {path}")
