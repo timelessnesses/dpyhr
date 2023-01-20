@@ -9,22 +9,31 @@ dpyhr is a hot cog reloader (that uses discord.py cog's implementation) to reloa
 ```py
 import dpyhr
 
-dpyhr.run(bot: commands.Bot, *paths: str, selection: Selection = Selection.normal, reloader: typing.Callable=None, conditional: typing.Callable=None, recursive: bool=False, **kwargs)
+dpyhr.run(
+    *paths: str,
+    bot: commands.Bot = None,
+    selection: Selection = Selection.normal,
+    reloader: typing.Callable = None,
+    conditional: typing.Callable = None,
+    recursive: bool = False,
+    **kwargs
+)
 ```
 
 `dpyhr.run` have a documentation as this
 
-> Run dphyr in another thread.
+> Run dphyr in another thread.  
 
->   Args:
->        bot (commands.Bot): For reloading extensions (if reloader doesn't exists)
->        selection (Selection, optional): Observer selection. Defaults to Selection.normal.
->        reloader (typing.Callable, optional): Reload module with your own function. Defaults to None.
->        conditional (typing.Callable, optional): Conditional when event is triggered. Defaults to None.
->       recursive (bool, optional): Recursive reloading. Defaults to False.
->        **kwargs: Other arguments for observer.
->    Returns:
->        None: No returns.
+>    Args:  
+>        *paths (str): Paths you want to watch for cogs. Supply those as argument  
+>        bot (commands.Bot, Optional): For reloading extensions (if reloader doesn't exists)  
+>        selection (Selection, optional): Observer selection. Defaults to Selection.normal.  
+>        reloader (typing.Callable, optional): Reload module with your own function. Defaults to None.  
+>        conditional (typing.Callable, optional): Conditional when event is triggered. Defaults to None.  
+>        recursive (bool, optional): Recursive reloading. Defaults to False.  
+>        **kwargs: Other arguments for observer.  
+>    Returns:  
+>        None: No returns.  
 
 ## Caution
 
