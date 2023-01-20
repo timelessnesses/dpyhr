@@ -29,3 +29,7 @@ dpyhr.run(bot: commands.Bot, *paths: str, selection: Selection = Selection.norma
 ## Caution
 
 dpyhr wouldn't work if you called your bot outside of the entrypoint starter so nested path wouldn't work in this case. you need to run it inside directory where you want python file to run else reloader might get wrong path and spits errors out.
+
+## Why you don't shipped discord.py with this package?
+
+Because dpyhr is trying to be able to compatible with any discord.py versions that have `discord.ext.commands` (other discord.py forks should works if they have `commands.Bot.reload_extension` and their package name is `discord`)
