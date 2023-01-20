@@ -7,6 +7,7 @@ import logging
 import typing
 
 log = logging.getLogger("dpyhr")
+log.setLevel(logging.CRITICAL)
 
 try:
     import discord.ext.commands as commands
