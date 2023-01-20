@@ -3,20 +3,25 @@ dphyr
 A simple module for support hot reloading of discord.py "cogs" (extensions).
 """
 import enum
-import typing
 import logging
+import typing
 
 try:
     import discord.ext.commands as commands
 except ImportError as e:
-    log.critical("dpyhr detected that discord.py is not found or you're using wrong version of discord.py without discord.ext.commands. Please install one. For reasons why I am not shipped with discord.py please read this.\nhttps://github.com/timelessnesses/dpyhr/blob/main/README.md#why-you-dont-shipped-discordpy-with-this-package")
-    raise ImportError("dpyhr detected that discord.py is not found or you're using wrong version of discord.py without discord.ext.commands. Please install one. For reasons why I am not shipped with discord.py please read this.\nhttps://github.com/timelessnesses/dpyhr/blob/main/README.md#why-you-dont-shipped-discordpy-with-this-package")
+    log.critical(
+        "dpyhr detected that discord.py is not found or you're using wrong version of discord.py without discord.ext.commands. Please install one. For reasons why I am not shipped with discord.py please read this.\nhttps://github.com/timelessnesses/dpyhr/blob/main/README.md#why-you-dont-shipped-discordpy-with-this-package"
+    )
+    raise ImportError(
+        "dpyhr detected that discord.py is not found or you're using wrong version of discord.py without discord.ext.commands. Please install one. For reasons why I am not shipped with discord.py please read this.\nhttps://github.com/timelessnesses/dpyhr/blob/main/README.md#why-you-dont-shipped-discordpy-with-this-package"
+    )
 
 from .normal import Normal, normal_start
 from .polling import Polling, polling_start
 from .utils import is_bot
 
 log = logging.getLogger("dpyhr")
+
 
 class Selection(enum.Enum):
 
@@ -31,7 +36,7 @@ def run(
     reloader: typing.Callable = None,
     conditional: typing.Callable = None,
     recursive: bool = False,
-    **kwargs
+    **kwargs,
 ) -> None:
     """Run dphyr in another thread.
 
@@ -53,7 +58,9 @@ def run(
         log.warn("No custom reloader found. Falling back to bot.reload_extension")
         reloader = bot.reload_extension
     if not conditional:
-        log.warn("No custom conditional function found. Falling back to lambda function that detects if file changed it .py file")
+        log.warn(
+            "No custom conditional function found. Falling back to lambda function that detects if file changed it .py file"
+        )
         conditional = lambda event: event.src_path.endswith(".py")
     if selection == Selection.normal:
         normal_start(
@@ -61,7 +68,7 @@ def run(
             reloader=reloader,
             condition=conditional,
             recursive=recursive,
-            **kwargs
+            **kwargs,
         )
     elif selection == Selection.polling:
         polling_start(
@@ -69,11 +76,12 @@ def run(
             reloader=reloader,
             condition=conditional,
             recursive=recursive,
-            **kwargs
+            **kwargs,
         )
     else:
         log.critical("Invalid selection")
         raise ValueError("Invalid selection")
     log.info(f"Started {selection.value} observer in another thread")
+
 
 log.info("fully initalized")
