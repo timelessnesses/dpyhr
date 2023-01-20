@@ -20,7 +20,7 @@ jobs:
       run: pip install discord.py isort black 
       
     - name: beauty
-      run: python -m isort . && python black . 
+      run: python -m isort . && python -m black . 
 
     - name: send those file back pzlpzlpzlpzlz
       uses: EndBug/add-and-commit@v7.5.0
