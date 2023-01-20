@@ -6,6 +6,8 @@ import enum
 import logging
 import typing
 
+log = logging.getLogger("dpyhr")
+
 try:
     import discord.ext.commands as commands
 except ImportError as e:
@@ -19,9 +21,6 @@ except ImportError as e:
 from .normal import Normal, normal_start
 from .polling import Polling, polling_start
 from .utils import is_bot
-
-log = logging.getLogger("dpyhr")
-
 
 class Selection(enum.Enum):
 
