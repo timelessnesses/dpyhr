@@ -1,6 +1,6 @@
 from watchdog.events import FileSystemEventHandler, FileSystemEvent
 from watchdog.observers import Observer
-import asyncio
+from .utils import runner
 import logging
 import traceback
 import typing
@@ -13,11 +13,11 @@ class Normal(FileSystemEventHandler):
         self.condition = condition
     def on_modified(self, event: FileSystemEvent) -> typing.NoReturn:
         log.info(f"File changed: {event.src_path}")
-        if self.condition(event):
+        if runner(self.condition(event)):
             log.info("Reloading...")
             path = event.src_path.replace("\\", "/").replace("/", ".")[:-3] # Convert to module path :D
             try:
-                asyncio.run(self.reload(path))
+                runner(self.reload)
                 log.info(f"Reloaded {path}")
             except Exception as e:
                 log.error(f"Failed to reload {path}")
