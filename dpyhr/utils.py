@@ -1,7 +1,6 @@
 import asyncio
 import inspect
 import typing
-import warnings
 
 from discord.ext import commands
 
