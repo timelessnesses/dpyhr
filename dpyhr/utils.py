@@ -2,8 +2,9 @@ import asyncio
 import inspect
 import typing
 
-from discord.ext import commands
 from decohints import decohints
+from discord.ext import commands
+
 
 def is_coro(func: typing.Callable) -> bool:
     return inspect.iscoroutinefunction(func)
@@ -17,12 +18,14 @@ def runner(
     property: typing.Union[typing.Callable, typing.Coroutine], *args, **kwargs
 ) -> typing.Optional[typing.Any]:
     return (
-        property(*args, **kwargs) if not is_coro(property) else asyncio.run(property(*args, **kwargs))
+        property(*args, **kwargs)
+        if not is_coro(property)
+        else asyncio.run(property(*args, **kwargs))
     )
 
-@decohints # YOU SAVED ME NOW I CAN SEE FUNCTION TYPINGS
+
+@decohints  # YOU SAVED ME NOW I CAN SEE FUNCTION TYPINGS
 def prevent_calling_outside_dpyhr(func: typing.Callable) -> typing.Callable:
-    
     def wrapper(
         *args,
         **kwargs,

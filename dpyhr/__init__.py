@@ -87,7 +87,7 @@ def run(
 
 def enable_log():
     import logging
-    
+
     global log, enable_log_bool
     log = logging.getLogger("dpyhr")
     enable_log_bool = True

@@ -35,6 +35,7 @@ class Normal(FileSystemEventHandler):
 def enable_log():
     global log
     import logging
+
     log = logging.getLogger("dpyhr.normal")
 
 

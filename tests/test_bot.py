@@ -1,10 +1,12 @@
+import os
 import subprocess
 import unittest
-import os
 
 os.chdir("../test_case")
 
-bot_process = subprocess.Popen(["python", "main.py"]) # should grab the .env immediately
+bot_process = subprocess.Popen(
+    ["python", "main.py"]
+)  # should grab the .env immediately
 
 normal_helloworld = """
 from discord.ext import commands
@@ -40,12 +42,16 @@ async def setup(bot: commands.Bot) -> None:
 
 with open("cogs/hello_world.py", "w") as f:
     f.write(normal_helloworld)
-    
+
 import time
-time.sleep(5) # wait for the bot to load the cog
+
+time.sleep(5)  # wait for the bot to load the cog
 
 # now read the console of the bot process
 
 print(bot_process.stdout.read().decode("utf-8").split("\n")[-1])
 
-assert "dpyhr.polling" in bot_process.stdout.read().decode("utf-8").split("\n")[-1] or "dpyhr.normal" in bot_process.stdout.read().decode("utf-8").split("\n")[-1]
+assert (
+    "dpyhr.polling" in bot_process.stdout.read().decode("utf-8").split("\n")[-1]
+    or "dpyhr.normal" in bot_process.stdout.read().decode("utf-8").split("\n")[-1]
+)
