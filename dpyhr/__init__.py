@@ -3,13 +3,12 @@ dphyr
 A simple module for support hot reloading of discord.py "cogs" (extensions).
 """
 import enum
-import logging
 import typing
 
 from .log_dummy import Logger
 
 log = Logger("dpyhr")
-log.setLevel(logging.CRITICAL)
+log.setLevel(0)
 
 enable_log_bool = False
 
@@ -72,6 +71,10 @@ def run(
     except:
         log.critical("Invalid selection")
         raise ValueError("Invalid selection")
+    if enable_log_bool:
+        selection.value.enable_log()
+    else:
+        selection.value.disable_log()
     selection.value.start(
         *paths,
         reloader=reloader,
@@ -83,6 +86,8 @@ def run(
 
 
 def enable_log():
+    import logging
+    
     global log, enable_log_bool
     log = logging.getLogger("dpyhr")
     enable_log_bool = True

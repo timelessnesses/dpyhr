@@ -25,5 +25,5 @@ bump:
 publish:
 	poetry publish -u $(PYPI_USERNAME) -p $(PYPI_PASSWORD) --build
 
-test:
-	cd test_case && python main.py
+test: # required discord.py for test to work
+	$(PYTHON) -m pip install discord.py && cd tests && $(PYTHON) -m pip install --force-reinstall ../ && $(PYTHON) test_normal_properties.py && $(PYTHON) test_bot.py

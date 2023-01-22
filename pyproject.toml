@@ -13,6 +13,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.8"
 watchdog = "^2.2.1"
+decohints = "^1.0.7"
 
 [tool.poetry.group.dev.dependencies]
 "discord.py" = "^2.1.0"

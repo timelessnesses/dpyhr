@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 
 import dpyhr
 
+dpyhr.enable_log()
+
 load_dotenv()
 import os
 
@@ -15,6 +17,10 @@ async def on_ready():
     await bot.load_extension("cogs.hello_world")
 
 
-dpyhr.run(bot, "cogs", selection=dpyhr.Selection.polling)
+dpyhr.run("cogs", bot=bot, selection=dpyhr.Selection.polling)
+
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 bot.run(os.getenv("TOKEN"))

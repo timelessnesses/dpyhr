@@ -1,4 +1,3 @@
-import logging
 import traceback
 import typing
 
@@ -34,6 +33,7 @@ class Polling(FileSystemEventHandler):
 
 @prevent_calling_outside_dpyhr
 def enable_log():
+    import logging
     global log
     log = logging.getLogger("dpyhr.polling")
 

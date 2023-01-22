@@ -1,4 +1,3 @@
-import logging
 import traceback
 import typing
 
@@ -35,6 +34,7 @@ class Normal(FileSystemEventHandler):
 @prevent_calling_outside_dpyhr
 def enable_log():
     global log
+    import logging
     log = logging.getLogger("dpyhr.normal")
 
 

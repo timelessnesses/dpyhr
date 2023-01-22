@@ -11,4 +11,4 @@ class hello_world(commands.Cog):
 
 
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(hello_world(bot))
+    await bot.add_cog(hello_world(bot)) 
