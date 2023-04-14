@@ -27,7 +27,6 @@ from .utils import is_bot
 
 
 class Selection(enum.Enum):
-
     polling: polling = polling
     normal: normal = normal
 
